@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="青冥剑誓，雪暖晴岚">
 <meta property="og:description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
 思路解析先说想法。大文件，首先想到的是多线程，于是    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=">
-<meta property="og:updated_time" content="2017-04-26T10:30:52.747Z">
+<meta property="og:updated_time" content="2017-04-27T03:21:32.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql插入大文件性能优化小结">
 <meta name="twitter:description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
@@ -360,6 +360,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工程日志/" itemprop="url" rel="index">
+                    <span itemprop="name">工程日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -438,6 +460,12 @@ https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
       
 
       
