@@ -1,65 +1,92 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>Mysql插入大文件性能优化小结 | 青冥剑誓，雪暖晴岚</title>
-  <meta name="author" content="沧海龙吟">
-  
-  <meta name="description" content="是的，我是爱古剑的">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Mysql插入大文件性能优化小结"/>
-  <meta property="og:site_name" content="青冥剑誓，雪暖晴岚"/>
-
+  <meta name="description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
+思路解析先说想法。大文件，首先想到的是多线程，于是    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql插入大文件性能优化小结">
+<meta property="og:url" content="https://summerhai.github.io/2017/04/26/Mysql插入大文件性能优化小结/index.html">
+<meta property="og:site_name" content="青冥剑誓，雪暖晴岚">
+<meta property="og:description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
+思路解析先说想法。大文件，首先想到的是多线程，于是    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=">
+<meta property="og:updated_time" content="2017-04-26T10:30:52.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql插入大文件性能优化小结">
+<meta name="twitter:description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
+思路解析先说想法。大文件，首先想到的是多线程，于是    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternate" href="/atom.xml" title="青冥剑誓，雪暖晴岚" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="青冥剑誓，雪暖晴岚" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
 
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">青冥剑誓，雪暖晴岚</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青冥剑誓，雪暖晴岚</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://summerhai.github.io"></form>
+      </div>
+    </div>
+  </div>
 </header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <div class="outer">
+        <section id="main"><article id="post-Mysql插入大文件性能优化小结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/26/Mysql插入大文件性能优化小结/" class="article-date">
+  <time datetime="2017-04-26T10:19:03.267Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-04-26T10:19:03.267Z"><a href="/2017/04/26/Mysql插入大文件性能优化小结/">2017-04-26</a></time>
-      
-      
-  
-    <h1 class="title">Mysql插入大文件性能优化小结</h1>
+    <h1 class="article-title" itemprop="name">
+      Mysql插入大文件性能优化小结
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <p>需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。</p>
 <h3 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h3><p>先说想法。大文件，首先想到的是多线程，于是<br>    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=0，并根据行数进行count++；3）count&gt;=start&amp;&amp;count<end时进行处理，每次插入一条数据；4）count>=end结束。<br>    想法2（升级版）：上述想法的主要瓶颈在于两点，1是统计文件行数必须要扫描全文，这个操作是瓶颈；2是每次插入一行记录造成mysql非常大的开销。我当时对瓶颈1没有什么思路，所以结合部分同事对mysql insert的优化情况，利用addBatch方法优化了瓶颈2，具体来说就是，将原来的一行一插入改为每X行拼接为value，然后一次插入，举例：insert into table (col1,col2,col3,col4,col5) values (a,a,a,a,a), (a,a,a,a,a), (a,a,a,a,a), (a,a,a,a,a),()…等等，得到很大提升。<br>    想法3（再次升级版）：针对瓶颈1，有同事建议采用文件分块随机读取RandomAccessFile的方式，不需要先扫描全文件，只需要获取文件字节大小，然后每个线程去读取一块文件。这样有效解决了瓶颈1的问题。<br>    但是同样有个问题，txt文件可以适用于想法3，csv文件不适用分块，所以适用于想法2，而xlsx文件由于有些文件加载过慢，所以采用了<a href="https://github.com/monitorjbl/excel-streaming-reader" target="_blank" rel="external">https://github.com/monitorjbl/excel-streaming-reader</a> 的一个插件，可以加载一部分xlsx文件，然后一步步缓存读取，有效缓解一次性加载大的xlsx文件导致过慢的问题。</end时进行处理，每次插入一条数据；4）count></p>
@@ -70,90 +97,103 @@ https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/
 </code></pre><h3 id="有任何疑问请发邮件至minglaihan-163-com，交流学习。"><a href="#有任何疑问请发邮件至minglaihan-163-com，交流学习。" class="headerlink" title="有任何疑问请发邮件至minglaihan@163.com，交流学习。"></a>有任何疑问请发邮件至minglaihan@163.com，交流学习。</h3>
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="https://summerhai.github.io/2017/04/26/Mysql插入大文件性能优化小结/" data-id="cj1zrr7ay0001pgsmzlmnncxy" class="article-share-link">Share</a>
       
-        
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
       
-      <div class="clearfix"></div>
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DataTable+MyBatis+PageHelper分页详细分析</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-<section id="comment">
-  <h1 class="title">Comments</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="https://summerhai.github.io/2017/04/26/Mysql插入大文件性能优化小结/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
 </section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:summerhai.github.io">
-  </form>
-</div>
+        
+          <aside id="sidebar">
+  
+    
 
   
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/26/Mysql插入大文件性能优化小结/">Mysql插入大文件性能优化小结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/">DataTable+MyBatis+PageHelper分页详细分析</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 沧海龙吟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2017 沧海龙吟
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+<script src="/js/script.js"></script>
 
+  </div>
 </body>
 </html>

@@ -1,65 +1,92 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>DataTable+MyBatis+PageHelper分页详细分析 | 青冥剑誓，雪暖晴岚</title>
-  <meta name="author" content="沧海龙吟">
-  
-  <meta name="description" content="是的，我是爱古剑的">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="DataTable+MyBatis+PageHelper分页详细分析"/>
-  <meta property="og:site_name" content="青冥剑誓，雪暖晴岚"/>
-
+  <meta name="description" content="需求：使用DataTable+MyBatis+PageHelper显示表Task的数据，但由于数据体量变大后，前端渲染和加载所需要的时间变长，时间性能变得不可接受，所以必须要分页。本次需求所要支持的功能有：1）分页；2）选择数据条数；3）排序；4）搜索。
+封装DataTablePageUtil类由于DataTable分页数据必然是通过服务器模式加载的，具体信息查看https://datatable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataTable+MyBatis+PageHelper分页详细分析">
+<meta property="og:url" content="https://summerhai.github.io/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/index.html">
+<meta property="og:site_name" content="青冥剑誓，雪暖晴岚">
+<meta property="og:description" content="需求：使用DataTable+MyBatis+PageHelper显示表Task的数据，但由于数据体量变大后，前端渲染和加载所需要的时间变长，时间性能变得不可接受，所以必须要分页。本次需求所要支持的功能有：1）分页；2）选择数据条数；3）排序；4）搜索。
+封装DataTablePageUtil类由于DataTable分页数据必然是通过服务器模式加载的，具体信息查看https://datatable">
+<meta property="og:updated_time" content="2017-04-24T10:10:28.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataTable+MyBatis+PageHelper分页详细分析">
+<meta name="twitter:description" content="需求：使用DataTable+MyBatis+PageHelper显示表Task的数据，但由于数据体量变大后，前端渲染和加载所需要的时间变长，时间性能变得不可接受，所以必须要分页。本次需求所要支持的功能有：1）分页；2）选择数据条数；3）排序；4）搜索。
+封装DataTablePageUtil类由于DataTable分页数据必然是通过服务器模式加载的，具体信息查看https://datatable">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternate" href="/atom.xml" title="青冥剑誓，雪暖晴岚" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="青冥剑誓，雪暖晴岚" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
 
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">青冥剑誓，雪暖晴岚</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青冥剑誓，雪暖晴岚</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://summerhai.github.io"></form>
+      </div>
+    </div>
+  </div>
 </header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <div class="outer">
+        <section id="main"><article id="post-DataTable+MyBatis+PageHelper分页详细分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/" class="article-date">
+  <time datetime="2017-04-24T10:11:37.360Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-04-24T10:11:37.360Z"><a href="/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/">2017-04-24</a></time>
-      
-      
-  
-    <h1 class="title">DataTable+MyBatis+PageHelper分页详细分析</h1>
+    <h1 class="article-title" itemprop="name">
+      DataTable+MyBatis+PageHelper分页详细分析
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <p>需求：使用DataTable+MyBatis+PageHelper显示表Task的数据，但由于数据体量变大后，前端渲染和加载所需要的时间变长，时间性能变得不可接受，所以必须要分页。本次需求所要支持的功能有：1）分页；2）选择数据条数；3）排序；4）搜索。</p>
 <h3 id="封装DataTablePageUtil类"><a href="#封装DataTablePageUtil类" class="headerlink" title="封装DataTablePageUtil类"></a>封装DataTablePageUtil类</h3><p>由于DataTable分页数据必然是通过服务器模式加载的，具体信息查看<a href="https://datatables.net/examples/server_side/simple.html" target="_blank" rel="external">https://datatables.net/examples/server_side/simple.html</a> ，确认DataTable通过Ajax返回的数据格式。所以需要先封装一个分页类DataTablePageUtil。其中非空构造函数是通过HttpServletRequest取出前端传过来的对应参数，例如length，search等等，全部参数包含：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">draw:1</div><div class="line">columns[0][data]:task_name</div><div class="line">columns[0][name]:</div><div class="line">columns[0][searchable]:<span class="literal">true</span></div><div class="line">columns[0][orderable]:<span class="literal">true</span></div><div class="line">columns[0][search][value]:</div><div class="line">columns[0][search][regex]:<span class="literal">false</span></div><div class="line">columns[1][data]:task_create_time</div><div class="line">columns[1][name]:</div><div class="line">columns[1][searchable]:<span class="literal">true</span></div><div class="line">columns[1][orderable]:<span class="literal">true</span></div><div class="line">columns[1][search][value]:</div><div class="line">columns[1][search][regex]:<span class="literal">false</span></div><div class="line">columns[2][data]:task_steps</div><div class="line">columns[2][name]:</div><div class="line">columns[2][searchable]:<span class="literal">true</span></div><div class="line">columns[2][orderable]:<span class="literal">true</span></div><div class="line">columns[2][search][value]:</div><div class="line">columns[2][search][regex]:<span class="literal">false</span></div><div class="line">columns[3][data]:task_status</div><div class="line">columns[3][name]:</div><div class="line">columns[3][searchable]:<span class="literal">true</span></div><div class="line">columns[3][orderable]:<span class="literal">true</span></div><div class="line">columns[3][search][value]:</div><div class="line">columns[3][search][regex]:<span class="literal">false</span></div><div class="line">columns[4][data]:task_type</div><div class="line">columns[4][name]:</div><div class="line">columns[4][searchable]:<span class="literal">true</span></div><div class="line">columns[4][orderable]:<span class="literal">true</span></div><div class="line">columns[4][search][value]:</div><div class="line">columns[4][search][regex]:<span class="literal">false</span></div><div class="line">columns[5][data]:task_used_time</div><div class="line">columns[5][name]:</div><div class="line">columns[5][searchable]:<span class="literal">true</span></div><div class="line">columns[5][orderable]:<span class="literal">true</span></div><div class="line">columns[5][search][value]:</div><div class="line">columns[5][search][regex]:<span class="literal">false</span></div><div class="line">columns[6][data]:task_committer</div><div class="line">columns[6][name]:</div><div class="line">columns[6][searchable]:<span class="literal">true</span></div><div class="line">columns[6][orderable]:<span class="literal">true</span></div><div class="line">columns[6][search][value]:</div><div class="line">columns[6][search][regex]:<span class="literal">false</span></div><div class="line">columns[7][data]:task_status</div><div class="line">columns[7][name]:</div><div class="line">columns[7][searchable]:<span class="literal">true</span></div><div class="line">columns[7][orderable]:<span class="literal">true</span></div><div class="line">columns[7][search][value]:</div><div class="line">columns[7][search][regex]:<span class="literal">false</span></div><div class="line">order[0][column]:0</div><div class="line">order[0][dir]:asc</div><div class="line">start:0</div><div class="line">length:10</div><div class="line">search[value]:</div><div class="line">search[regex]:<span class="literal">false</span></div></pre></td></tr></table></figure></p>
@@ -71,90 +98,112 @@
 <h3 id="综上，分页、选择数据条数、排序、搜索四个功能都已经能支持了。"><a href="#综上，分页、选择数据条数、排序、搜索四个功能都已经能支持了。" class="headerlink" title="综上，分页、选择数据条数、排序、搜索四个功能都已经能支持了。"></a>综上，分页、选择数据条数、排序、搜索四个功能都已经能支持了。</h3>
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="https://summerhai.github.io/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/" data-id="cj1zrr7ay0000pgsmbyqe8u1l" class="article-share-link">Share</a>
       
-        
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
       
-      <div class="clearfix"></div>
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/26/Mysql插入大文件性能优化小结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mysql插入大文件性能优化小结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-<section id="comment">
-  <h1 class="title">Comments</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="https://summerhai.github.io/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
 </section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:summerhai.github.io">
-  </form>
-</div>
+        
+          <aside id="sidebar">
+  
+    
 
   
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/26/Mysql插入大文件性能优化小结/">Mysql插入大文件性能优化小结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/">DataTable+MyBatis+PageHelper分页详细分析</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 沧海龙吟<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2017 沧海龙吟
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+<script src="/js/script.js"></script>
 
+  </div>
 </body>
 </html>
