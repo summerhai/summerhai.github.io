@@ -309,6 +309,167 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2017/04/27/一张图理解重载和覆盖的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沧海龙吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青冥剑誓，雪暖晴岚">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/27/一张图理解重载和覆盖的区别/" itemprop="url">
+                  一张图理解重载和覆盖的区别
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T19:09:47+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译ProgramGreek/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译ProgramGreek</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/27/一张图理解重载和覆盖的区别/" class="leancloud_visitors" data-flag-title="一张图理解重载和覆盖的区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原文地址:<a href="http://www.programcreek.com/2009/02/overriding-and-overloading-in-java-with-examples/" target="_blank" rel="external">http://www.programcreek.com/2009/02/overriding-and-overloading-in-java-with-examples/</a><br>先放图（重点）：<br><img src="http://www.programcreek.com/wp-content/uploads/2009/02/overloading-vs-overriding.png" alt="avatar"></p>
+<p>覆盖和重载是Java中比较重要的两个概念，对初学者来说经常会感觉到困惑，本文用简单的例子解释二者的区别。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>方法签名：方法的名字和参数列表<br>重载：发生于同类方法中，方法名相同、方法签名不同<br>覆盖：发生于继承的父类和子类中，方法名和方法签名相同，但是父类和子类对该方法的实现不同，子类的实现允许和父类的实现不同。</p>
+<h3 id="覆盖与重载"><a href="#覆盖与重载" class="headerlink" title="覆盖与重载"></a>覆盖与重载</h3><p>有以下几个重要情况需要注意：<br>1，    在运行时的对象类型决定了哪个覆盖方法该被使用，而引用变量类型决定了哪个覆盖方法将被用于编译期。（这话看起来好怪，放原文吧：The real object type in the run-time, not the reference variable’s type, determines which overridden method is used at runtime. In contrast, reference type determines which overloaded method will be used at compile time.）<br>2，    覆盖体现多样性，而重载不能。<br>3，    覆盖是运行时的概念，而重载是编译时的概念。</p>
+<h3 id="覆盖的例子"><a href="#覆盖的例子" class="headerlink" title="覆盖的例子"></a>覆盖的例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class Dog&#123;</div><div class="line">    public void bark()&#123;</div><div class="line">        System.out.println(&quot;woof &quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">class Hound extends Dog&#123;</div><div class="line">    public void sniff()&#123;</div><div class="line">        System.out.println(&quot;sniff &quot;);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    public void bark()&#123;</div><div class="line">        System.out.println(&quot;bowl&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">public class OverridingTest&#123;</div><div class="line">    public static void main(String [] args)&#123;</div><div class="line">        Dog dog = new Hound();</div><div class="line">        dog.bark();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bowl</div></pre></td></tr></table></figure></p>
+<p>在上述例子中dog是Dog的对象，在编译时编译期检测到Dog有bark方法，只要有bark方法，那就可以编译通过了。在运行的时候呢，首先创建了Hound类并分配给dog对象，JVM知道dog对象引用的Hound对象，所以调用Hound的bark方法，这被称为动态多样性。<br>假如上述例子中Hound中没有bark方法呢？会输出什么？欢迎评论。</p>
+<h3 id="重载的例子"><a href="#重载的例子" class="headerlink" title="重载的例子"></a>重载的例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Dog&#123;</div><div class="line">    public void bark()&#123;</div><div class="line">        System.out.println(&quot;woof &quot;);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    //overloading method</div><div class="line">    public void bark(int num)&#123;</div><div class="line">    	for(int i=0; i&lt;num; i++)</div><div class="line">    		System.out.println(&quot;woof &quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个例子中，两个bark方法可以通过使用不同的参数被调用，编译器识别出他们不同的方法签名所以知道他们是不同的。<br>对多态还有个解释，可以参考下：<br>编译时重载<br>运行时覆盖</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2017/04/26/Mysql插入大文件性能优化小结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -801,7 +962,7 @@ https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -812,7 +973,7 @@ https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -823,7 +984,7 @@ https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
