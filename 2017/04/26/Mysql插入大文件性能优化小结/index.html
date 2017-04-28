@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="青冥剑誓，雪暖晴岚">
 <meta property="og:description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
 思路解析先说想法。大文件，首先想到的是多线程，于是    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=">
-<meta property="og:updated_time" content="2017-04-27T03:21:32.408Z">
+<meta property="og:updated_time" content="2017-04-28T01:32:59.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql插入大文件性能优化小结">
 <meta name="twitter:description" content="需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。
@@ -416,7 +416,7 @@
 
       
         <p>需求：将一个很大的文件（txt,csv,xlsx，大小GB以上，行数亿级以上）的记录添加到Mysql中，不要求顺序插入，要求要在可接受的时间范围内完成数据插入，并保证正确性。</p>
-<h3 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h3><p>先说想法。大文件，首先想到的是多线程，于是<br>    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=0，并根据行数进行count++；3）count&gt;=start&amp;&amp;count<end时进行处理，每次插入一条数据；4）count>=end结束。<br>    想法2（升级版）：上述想法的主要瓶颈在于两点，1是统计文件行数必须要扫描全文，这个操作是瓶颈；2是每次插入一行记录造成mysql非常大的开销。我当时对瓶颈1没有什么思路，所以结合部分同事对mysql insert的优化情况，利用addBatch方法优化了瓶颈2，具体来说就是，将原来的一行一插入改为每X行拼接为value，然后一次插入，举例：insert into table (col1,col2,col3,col4,col5) values (a,a,a,a,a), (a,a,a,a,a), (a,a,a,a,a), (a,a,a,a,a),()…等等，得到很大提升。<br>    想法3（再次升级版）：针对瓶颈1，有同事建议采用文件分块随机读取RandomAccessFile的方式，不需要先扫描全文件，只需要获取文件字节大小，然后每个线程去读取一块文件。这样有效解决了瓶颈1的问题。<br>    但是同样有个问题，txt文件可以适用于想法3，csv文件不适用分块，所以适用于想法2，而xlsx文件由于有些文件加载过慢，所以采用了<a href="https://github.com/monitorjbl/excel-streaming-reader" target="_blank" rel="external">https://github.com/monitorjbl/excel-streaming-reader</a> 的一个插件，可以加载一部分xlsx文件，然后一步步缓存读取，有效缓解一次性加载大的xlsx文件导致过慢的问题。</end时进行处理，每次插入一条数据；4）count></p>
+<h3 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h3><p>先说想法。大文件，首先想到的是多线程，于是<br>    想法1：先获取到文件的行数M，然后启动N个线程，每个线程处理Start-End的共M/N（做取整处理）条记录，每个线程的做法是：1）open文件；2）设置count=0，并根据行数进行count++；3）count&gt;=start&amp;&amp;count<end时进行处理，每次插入一条数据；4）count>=end结束。<br>    想法2（升级版）：上述想法的主要瓶颈在于两点，1是统计文件行数必须要扫描全文，这个操作是瓶颈；2是每次插入一行记录造成mysql非常大的开销。我当时对瓶颈1没有什么思路，所以结合部分同事对mysql insert的优化情况，利用addBatch方法优化了瓶颈2，具体来说就是，将原来的一行一插入改为每X行拼接为value，然后一次插入，举例：insert into table (col1,col2,col3,col4,col5) values (a,a,a,a,a), (a,a,a,a,a), (a,a,a,a,a), (a,a,a,a,a),()…等等，得到很大提升。<br>    想法3（再次升级版）：针对瓶颈1，有同事建议采用文件分块随机读取RandomAccessFile的方式，不需要先扫描全文件，只需要获取文件字节大小，然后每个线程去读取一块文件。这样有效解决了瓶颈1的问题。<br>    但是同样有个问题，txt文件可以适用于想法3，csv文件不适用分块，所以适用于想法2，而xlsx文件由于有些文件加载过慢，所以采用了<a href="https://github.com/monitorjbl/excel-streaming-reader" target="_blank" rel="external">https://github.com/monitorjbl/excel-streaming-reader</a> 的一个插件，可以加载一部分xlsx文件，然后一步步缓存读取，有效缓解一次性加载大的xlsx文件导致过慢的问题。<br>    <a id="more"></a></end时进行处理，每次插入一条数据；4）count></p>
 <h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><pre><code>主类：
 https://github.com/summerhai/blog/blob/master/src/main/java/canghailongyin/blog/main/FileToDBThread.java
 完整项目地址：
