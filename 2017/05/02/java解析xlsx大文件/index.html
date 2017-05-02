@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="xlsx,java," />
 
 
 
@@ -88,15 +88,19 @@
 
 
 
-<meta name="description" content="是的，我是爱古剑的">
-<meta property="og:type" content="website">
-<meta property="og:title" content="青冥剑誓，雪暖晴岚">
-<meta property="og:url" content="https://summerhai.github.io/categories/工程日志/index.html">
+<meta name="description" content="需求：用Java处理excel文件，可能对每一行每一列进行处理，其中xls由于最高只有65536行，所以暂不考虑，只考虑xlsx。
+直观想法Apache提供有解析excel的包poi，对应的maven为：                org.apache.poi        poi        3.15    传统解析xlsx的方式是用InputStream对象封装为XSSFWorkbook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java解析xlsx大文件">
+<meta property="og:url" content="https://summerhai.github.io/2017/05/02/java解析xlsx大文件/index.html">
 <meta property="og:site_name" content="青冥剑誓，雪暖晴岚">
-<meta property="og:description" content="是的，我是爱古剑的">
+<meta property="og:description" content="需求：用Java处理excel文件，可能对每一行每一列进行处理，其中xls由于最高只有65536行，所以暂不考虑，只考虑xlsx。
+直观想法Apache提供有解析excel的包poi，对应的maven为：                org.apache.poi        poi        3.15    传统解析xlsx的方式是用InputStream对象封装为XSSFWorkbook">
+<meta property="og:updated_time" content="2017-05-02T06:04:25.748Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="青冥剑誓，雪暖晴岚">
-<meta name="twitter:description" content="是的，我是爱古剑的">
+<meta name="twitter:title" content="java解析xlsx大文件">
+<meta name="twitter:description" content="需求：用Java处理excel文件，可能对每一行每一列进行处理，其中xls由于最高只有65536行，所以暂不考虑，只考虑xlsx。
+直观想法Apache提供有解析excel的包poi，对应的maven为：                org.apache.poi        poi        3.15    传统解析xlsx的方式是用InputStream对象封装为XSSFWorkbook">
 
 
 
@@ -124,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="https://summerhai.github.io/categories/工程日志/"/>
+  <link rel="canonical" href="https://summerhai.github.io/2017/05/02/java解析xlsx大文件/"/>
 
 
 
 
 
-  <title>分类: 工程日志 | 青冥剑誓，雪暖晴岚</title>
+  <title>java解析xlsx大文件 | 青冥剑誓，雪暖晴岚</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,103 +311,217 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        工程日志
-        <small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/02/java解析xlsx大文件/" itemprop="url">
-              
-                <span itemprop="name">java解析xlsx大文件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-02T13:52:53+08:00"
-              content="2017-05-02" >
-          05-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/26/Mysql插入大文件性能优化小结/" itemprop="url">
-              
-                <span itemprop="name">Mysql插入大文件性能优化小结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-26T18:19:03+08:00"
-              content="2017-04-26" >
-          04-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/24/DataTable+MyBatis+PageHelper分页详细分析/" itemprop="url">
-              
-                <span itemprop="name">DataTable+MyBatis+PageHelper分页详细分析</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-24T18:11:37+08:00"
-              content="2017-04-24" >
-          04-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2017/05/02/java解析xlsx大文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沧海龙吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青冥剑誓，雪暖晴岚">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                java解析xlsx大文件
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T13:52:53+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工程日志/" itemprop="url" rel="index">
+                    <span itemprop="name">工程日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/02/java解析xlsx大文件/" class="leancloud_visitors" data-flag-title="java解析xlsx大文件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>需求：用Java处理excel文件，可能对每一行每一列进行处理，其中xls由于最高只有65536行，所以暂不考虑，只考虑xlsx。</p>
+<h3 id="直观想法"><a href="#直观想法" class="headerlink" title="直观想法"></a>直观想法</h3><p>Apache提供有解析excel的包poi，对应的maven为：<br>    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi --><br>    <dependency><br>        <groupid>org.apache.poi</groupid><br>        <artifactid>poi</artifactid><br>        <version>3.15</version><br>    </dependency><br>传统解析xlsx的方式是用InputStream对象封装为XSSFWorkbook对象，然后进行一系列处理，这里的问题在于，在文件行数增大后，xssfWorkbook = new XSSFWorkbook(input);这里的处理难度大大增加，非常耗时。<br><a id="more"></a></p>
+<h3 id="升级方案"><a href="#升级方案" class="headerlink" title="升级方案"></a>升级方案</h3><p>在调研excel-streaming-reader技术后，受到启发，采用以缓存+流的形式加载xlsx，而不是一次性加载为workbook。具体做法是：</p>
+<ol>
+<li>引入Maven包： <dependency><br>     <groupid>com.monitorjbl</groupid><br>     <artifactid>xlsx-streamer</artifactid><br>     <version>1.0.1</version><br> </dependency></li>
+<li><p>打开文件方式如下：<br> import com.monitorjbl.xlsx.StreamingReader;</p>
+<p> InputStream is = new FileInputStream(new File(“/path/to/workbook.xlsx”));<br> Workbook workbook = StreamingReader.builder()</p>
+<pre><code>.rowCacheSize(100)    // number of rows to keep in memory (defaults to 10)
+.bufferSize(4096)     // buffer size to use when reading InputStream to file (defaults to 1024)
+.open(is);            // InputStream or File for XLSX file (required)
+</code></pre></li>
+<li>读取文件方式如下：<br> for (Sheet sheet : workbook){<pre><code>System.out.println(sheet.getSheetName());
+for (Row r : sheet) {
+    for (Cell c : r) {
+    System.out.println(c.getStringCellValue());
+    }
+}
+</code></pre> }<h3 id="验证方案"><a href="#验证方案" class="headerlink" title="验证方案"></a>验证方案</h3>通过全扫描一遍表格，暂时不做任何处理，方案性能比较如下：<br>||文件行数|一般方法||缓存+流方法||<br>|:–|:–|:–|:–|:–|:–|<br>|||处理InputStream时间|总时间|处理InputStream时间|总时间|<br>||10000|2|2|0|1|<br>||50000|4|4|0|3|<br>||100000|13|13|5|9|<br>||500000|NULL(报错)||5|21|<br>||1000000|NULL(报错)||4|33|<br>||3000000|NULL(报错)||5|94|<br>||5000000|NULL(报错)||4|136|<br>||10000000|NULL(报错)||11|276|<h3 id="方案的优缺点"><a href="#方案的优缺点" class="headerlink" title="方案的优缺点"></a>方案的优缺点</h3></li>
+</ol>
+<ul>
+<li>优点：有效加载大文件，避免卡死，读取效率高；</li>
+<li>缺点：无法预知文件行数，需要先缓存一部分，然后一块一块加载处理。<h3 id="完整项目代码及部分测试数据"><a href="#完整项目代码及部分测试数据" class="headerlink" title="完整项目代码及部分测试数据"></a>完整项目代码及部分测试数据</h3>项目地址:<a href="https://github.com/summerhai/blog/blob/master/src/main/java/canghailongyin/blog/main/BigXLSXAnalysis.java" target="_blank" rel="external">https://github.com/summerhai/blog/blob/master/src/main/java/canghailongyin/blog/main/BigXLSXAnalysis.java</a><br>测试数据地址:<a href="https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/testFile" target="_blank" rel="external">https://github.com/summerhai/blog/tree/master/src/main/java/canghailongyin/blog/testFile</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="沧海龙吟 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>有奇趣脑洞，也有中规中矩的技术博客和翻译，欢迎订阅！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/xlsx/" rel="tag"># xlsx</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/28/年终决策/" rel="next" title="年终决策">
+                <i class="fa fa-chevron-left"></i> 年终决策
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -411,6 +529,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM4My80OTU0"></div>
+    
+  </div>
+
 
         </div>
         
@@ -430,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg"
@@ -513,6 +646,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#直观想法"><span class="nav-number">1.</span> <span class="nav-text">直观想法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级方案"><span class="nav-number">2.</span> <span class="nav-text">升级方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证方案"><span class="nav-number">3.</span> <span class="nav-text">验证方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案的优缺点"><span class="nav-number">4.</span> <span class="nav-text">方案的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整项目代码及部分测试数据"><span class="nav-number">5.</span> <span class="nav-text">完整项目代码及部分测试数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -633,6 +782,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -667,6 +820,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
