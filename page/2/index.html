@@ -319,6 +319,165 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2018/04/10/Java NIO系列教程(转载) /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沧海龙吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青冥剑誓，雪暖晴岚">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/10/Java NIO系列教程(转载) /" itemprop="url">
+                  Java NIO系列教程(转载)
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T19:35:34+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载技术/" itemprop="url" rel="index">
+                    <span itemprop="name">转载技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/10/Java NIO系列教程(转载) /" class="leancloud_visitors" data-flag-title="Java NIO系列教程(转载)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>翻译地址：<a href="http://www.iteye.com/magazines/132-Java-NIO#579">http://www.iteye.com/magazines/132-Java-NIO#579</a><br>原始地址：<a href="http://tutorials.jenkov.com/java-nio/overview.html">http://tutorials.jenkov.com/java-nio/overview.html</a><br>Java NIO（New IO）是从Java 1.4版本开始引入的一个新的IO API，可以替代标准的Java IO API。本系列教程将有助于你学习和理解Java NIO。感谢并发编程网的翻译和投递。  </p>
+<p>Java NIO提供了与标准IO不同的IO工作方式： </p>
+<p>Channels and Buffers（通道和缓冲区）：标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓冲区（Buffer）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。<br>Asynchronous IO（异步IO）：Java NIO可以让你异步的使用IO，例如：当线程从通道读取数据到缓冲区时，线程还是可以进行其他事情。当数据被写入到缓冲区时，线程可以继续处理它。从缓冲区写入通道也类似。<br>Selectors（选择器）：Java NIO引入了选择器的概念，选择器用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个的线程可以监听多个数据通道。<br>下面就来详细介绍Java NIO的相关知识。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/Java NIO系列教程(转载) /#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2018/04/10/删除单链表中元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -432,6 +591,164 @@
 <h3 id="直观方案"><a href="#直观方案" class="headerlink" title="直观方案"></a>直观方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public ListNode removeElements(ListNode head, int val) &#123;</div><div class="line">    if(head == null)</div><div class="line">        return head;</div><div class="line">    ListNode cur = head,next = head.next;</div><div class="line">    while(next != null)&#123;</div><div class="line">        if(next.val == val)&#123;</div><div class="line">            cur.next = next.next;</div><div class="line">            next = next.next;</div><div class="line">        &#125;else&#123;</div><div class="line">            cur = cur.next;</div><div class="line">            next = next.next;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //最后去除表头</div><div class="line">    if(head.val == val)</div><div class="line">        head = head.next;</div><div class="line">    return head;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2018/04/10/斐波那契的两种解法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沧海龙吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青冥剑誓，雪暖晴岚">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/10/斐波那契的两种解法/" itemprop="url">
+                  斐波那契的两种解法
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T19:35:31+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/每日算法/" itemprop="url" rel="index">
+                    <span itemprop="name">每日算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/10/斐波那契的两种解法/" class="leancloud_visitors" data-flag-title="斐波那契的两种解法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>需求：查找斐波纳契数列中第 N 个数。<br>所谓的斐波纳契数列是指：<br>•    前2个数是 0 和 1 。<br>•    第 i 个数是第 i-1 个数和第i-2 个数的和。<br>斐波纳契数列的前10个数字是：<br>0, 1, 1, 2, 3, 5, 8, 13, 21, 34 …</p>
+<h3 id="直观方案-递归"><a href="#直观方案-递归" class="headerlink" title="直观方案:递归"></a>直观方案:递归</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//最直观易懂，但是递归太慢，数字较大时超时</div><div class="line">public static int fibonacci(int n) &#123;</div><div class="line">       if(n == 1)</div><div class="line">           return 0;</div><div class="line">       if(n == 2)</div><div class="line">           return 1;</div><div class="line">       return fibonacci(n-2)+fibonacci(n-1);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/斐波那契的两种解法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -778,326 +1095,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2018/04/10/java解析xlsx大文件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="沧海龙吟">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青冥剑誓，雪暖晴岚">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/04/10/java解析xlsx大文件/" itemprop="url">
-                  java解析xlsx大文件
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T19:35:31+08:00">
-                2018-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工程日志/" itemprop="url" rel="index">
-                    <span itemprop="name">工程日志</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/10/java解析xlsx大文件/" class="leancloud_visitors" data-flag-title="java解析xlsx大文件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>需求：用Java处理excel文件，可能对每一行每一列进行处理，其中xls由于最高只有65536行，所以暂不考虑，只考虑xlsx。</p>
-<h3 id="直观方案"><a href="#直观方案" class="headerlink" title="直观方案"></a>直观方案</h3><p>Apache提供有解析excel的包poi，对应的maven为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;poi&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;3.15&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
-<p>传统解析xlsx的方式是用InputStream对象封装为XSSFWorkbook对象，然后进行一系列处理，这里的问题在于，在文件行数增大后，xssfWorkbook = new XSSFWorkbook(input);这里的处理难度大大增加，非常耗时。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/10/java解析xlsx大文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://summerhai.github.io/2018/04/10/java的继承和组合/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="沧海龙吟">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://p3.qhmsg.com/dmsmty/340_510_/t013bf535964baaf6dd.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青冥剑誓，雪暖晴岚">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/04/10/java的继承和组合/" itemprop="url">
-                  java的继承和组合
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T19:35:31+08:00">
-                2018-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/翻译ProgramGreek/" itemprop="url" rel="index">
-                    <span itemprop="name">翻译ProgramGreek</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/10/java的继承和组合/" class="leancloud_visitors" data-flag-title="java的继承和组合">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>原文地址:<a href="http://www.programcreek.com/2014/05/inheritance-vs-composition-in-java/">http://www.programcreek.com/2014/05/inheritance-vs-composition-in-java/</a><br>本文介绍了Java中继承与组合的概念。首先展示了一个继承的例子，然后展示如何通过使用组合来改进继承的设计。最后总结二者之间的区别。</p>
-<h3 id="继承的例子"><a href="#继承的例子" class="headerlink" title="继承的例子"></a>继承的例子</h3><p>假设有一个类Insect，包含两个方法，move()和attack()<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Insect</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;</div><div class="line">	<span class="keyword">private</span> String color;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Insect</span><span class="params">(<span class="keyword">int</span> size, String color)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.size = size;</div><div class="line">		<span class="keyword">this</span>.color = color;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> size;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSize</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.size = size;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getColor</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> color;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(String color)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.color = color;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Move"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">		move(); <span class="comment">//assuming an insect needs to move before attacking</span></div><div class="line">		System.out.println(<span class="string">"Attack"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>现在再定义一个Insect的子类Bee，其拥有不同的实现方法attack()和move()，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bee</span> <span class="keyword">extends</span> <span class="title">Insect</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bee</span><span class="params">(<span class="keyword">int</span> size, String color)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>(size, color);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Fly"</span>);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</div><div class="line">		move();</div><div class="line">		<span class="keyword">super</span>.attack();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InheritanceVSComposition</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Insect i = <span class="keyword">new</span> Bee(<span class="number">1</span>, <span class="string">"red"</span>);</div><div class="line">		i.attack();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>类的层次结构图:<br><img src="http://www.programcreek.com/wp-content/uploads/2014/05/inheritance-vs-composition-1.jpg" alt="avatar"><br>输出：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Fly</div><div class="line">Fly</div><div class="line">Attack</div></pre></td></tr></table></figure></p>
-<p>发现Fly打印了两次，说明move方法被调用了2次，但是应该只被调用1次。这个问题是由于super.attack()方法，这个Insect类的attack方法调用了move方法，当子类调用super.attack方法后，还调用了重写的move方法<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/10/java的继承和组合/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1147,7 +1144,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1158,7 +1155,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
